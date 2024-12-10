@@ -12,6 +12,7 @@ from flask_cors import CORS
 from flask_mailman import Mail
 from dotenv import load_dotenv
 from flask_migrate import Migrate
+import os
 
 load_dotenv()
 
@@ -40,4 +41,5 @@ if __name__ == "__main__":
         db.create_all()
     # for development
     # app.run(debug=True)
-    app.run()
+    port = int(os.getenv("PORT", 5000))  # Get port from environment variable or use 5000 as fallback
+    app.run(host='0.0.0.0', port=port)
